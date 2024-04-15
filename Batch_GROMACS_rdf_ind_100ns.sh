@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-Path="/mnt/d/My_Work/XY_PBC_Runs/Structure_1/"
+Path="../"
 
 TSur=$1;
 RUN=$2;
@@ -52,11 +52,11 @@ for TSur in $TSur; do
 
 	cd $Folder
 
-	gmx rdf -f ${runnum}_300Kwater_on_${TSur}Ksilic_relax_${TSur}K_${Time}ns.trr -s ${runnum}_300Kwater_on_${TSur}Ksilic_relax_${TSur}K_${Time}ns.tpr -n structure2.ndx -o $Path/300Kwater_on_${TSur}Ksilic/${RUN}/Analysis/Output_Files/RDF/rdf_${atom}_300Kwater_on_${TSur}Ksilic_relax_${TSur}K_${Time}ns.xvg < /mnt/c/Users/Gromacs/XY_PBC_Runs/Scripts/Bash/rdf_${atom}.txt \
+	gmx rdf -f ${runnum}_300Kwater_on_${TSur}Ksilic_relax_${TSur}K_${Time}ns.trr -s ${runnum}_300Kwater_on_${TSur}Ksilic_relax_${TSur}K_${Time}ns.tpr -n structure.ndx -o $Path/300Kwater_on_${TSur}Ksilic/${RUN}/Analysis/Output_Files/RDF/rdf_${atom}_300Kwater_on_${TSur}Ksilic_relax_${TSur}K_${Time}ns.xvg < ../rdf_${atom}.txt \
 
 	for Heat in $Heat; do
 
-	gmx rdf -f ${runnum}_300Kwater_on_${TSur}Ksilic_heating_${Heat}K_${Time}ns.trr -s ${runnum}_300Kwater_on_${TSur}Ksilic_heating_${Heat}K_${Time}ns.tpr -n structure2.ndx -o $Path/300Kwater_on_${TSur}Ksilic/${RUN}/Analysis/Output_Files/RDF/rdf_${atom}_300Kwater_on_${TSur}Ksilic_heating_${Heat}K_${Time}ns.xvg < /mnt/c/Users/Gromacs/XY_PBC_Runs/Scripts/Bash/rdf_${atom}.txt \
+	gmx rdf -f ${runnum}_300Kwater_on_${TSur}Ksilic_heating_${Heat}K_${Time}ns.trr -s ${runnum}_300Kwater_on_${TSur}Ksilic_heating_${Heat}K_${Time}ns.tpr -n structure.ndx -o $Path/300Kwater_on_${TSur}Ksilic/${RUN}/Analysis/Output_Files/RDF/rdf_${atom}_300Kwater_on_${TSur}Ksilic_heating_${Heat}K_${Time}ns.xvg < ../rdf_${atom}.txt \
 
 	done
 done
