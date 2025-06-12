@@ -20,9 +20,7 @@ time = str('100')
 atom = str('O')
 
 
-#Find files and merge them into one where the left column is pore size and top row is the temperature
-
-files = glob.glob(f"C:/Users/jch13924/Documents/PhD/MD/Overall_Plots/Structure_1/300Kwater_on_20Ksilic/{time}_ns/RDF/rdf_{atom}_*.txt")
+files = glob.glob(f"../RDF/rdf_{atom}_*.txt")
 df20 = pd.concat(
     [
         pd.read_csv(
@@ -43,7 +41,7 @@ print(df20)
 #########
 
 
-files = glob.glob(f"C:/Users/jch13924/Documents/PhD/MD/Overall_Plots/Structure_1/300Kwater_on_40Ksilic/{time}_ns/RDF/rdf_{atom}_*.txt")
+files = glob.glob(f"../RDF/rdf_{atom}_*.txt")
 df40 = pd.concat(
     [
         pd.read_csv(
@@ -65,7 +63,7 @@ print(df40)
 ###########
 
 
-files = glob.glob(f"C:/Users/jch13924/Documents/PhD/MD/Overall_Plots/Structure_1/300Kwater_on_60Ksilic/{time}_ns/RDF/rdf_{atom}_*.txt")
+files = glob.glob(f"../RDF/rdf_{atom}_*.txt")
 df60 = pd.concat(
     [
         pd.read_csv(
@@ -87,7 +85,7 @@ print(df60)
 ###########
 
 
-files = glob.glob(f"C:/Users/jch13924/Documents/PhD/MD/Overall_Plots/Structure_1/300Kwater_on_80Ksilic/{time}_ns/RDF/rdf_{atom}_*.txt")
+files = glob.glob(f"../RDF/rdf_{atom}_*.txt")
 df80 = pd.concat(
     [
         pd.read_csv(
@@ -110,7 +108,7 @@ print(df80)
 #########
 
 
-files = glob.glob(f"C:/Users/jch13924/Documents/PhD/MD/Overall_Plots/Structure_1/300Kwater_on_100Ksilic/{time}_ns/RDF/rdf_{atom}_*.txt")
+files = glob.glob(f"../RDF/rdf_{atom}_*.txt")
 df100 = pd.concat(
     [
         pd.read_csv(
@@ -132,7 +130,7 @@ print(df100)
 ########
 
 
-files = glob.glob(f"C:/Users/jch13924/Documents/PhD/MD/Overall_Plots/Structure_1/300Kwater_on_120Ksilic/{time}_ns/RDF/rdf_{atom}_*.txt")
+files = glob.glob(f"../RDF/rdf_{atom}_*.txt")
 df120 = pd.concat(
     [
         pd.read_csv(
@@ -157,38 +155,29 @@ print(df120)
 # Split jet map 
 jet = mplplot.get_cmap('jet')
 
-#print(np.linspace(0,1,19))
-
 colors = jet(np.linspace(0,1,19))
-
 colors2 = jet(np.linspace(0.11111111,1.22,19))
-
 colors3 = jet(np.linspace(0.22222222,1.22,19))
-
 colors4 = jet(np.linspace(0.33333333, 1.35,19))
-
 colors5 = jet(np.linspace(0.44444444, 1.51,19))
-
 colors6 = jet(np.linspace(0.55555556, 1.62,19))
 
 
 #############################################
 
 
-fig, ax = plt.subplots(6, 1, figsize=(15,20))      #, sharey=True, figsize=(6,17)
+fig, ax = plt.subplots(6, 1, figsize=(15,20))     
 # Remove horizontal space between axes
 fig.subplots_adjust(wspace=0, hspace=0)
 plt.rcParams["axes.linewidth"]	= 2
 plt.rcParams["mathtext.default"] = "regular"
 
-
-
 for col in range(len(df20.columns)):
     ax[0].plot(df20.index, df20.iloc[:,col], c=colors[col])
     ax[0].tick_params(which="major", labelsize=17, width=1.5, length=6)
     ax[0].tick_params(which="minor", labelsize=17, width=1.5, length=4)
-    ax[0].set_ylim(-0.4, 23)   #12 for HW1HW2   23 for O
-    ax[0].set_xlim(2, 14) # 2 for O and 1 for HW1HW2
+    ax[0].set_ylim(-0.4, 23)   
+    ax[0].set_xlim(2, 14)
     ax[0].set_xticks(range(2, 15, 1))
     ax[0].set_ylabel('$g_{OO}(r)$', fontsize=24)
     #ax[0].set_title('20 K Deposition', fontsize=20)
@@ -202,12 +191,10 @@ ax2.set_axes_locator(ip)
  
 for col in range(len(df20.columns)):
     ax2.plot(df20.index, df20.iloc[:,col], c=colors[col])
-    ax2.set_xlim(2.3, 8)  # 2.3, 8 for O and 1.5,8 for HW1HW2
-    ax2.set_ylim(-0.4, 4) # to 4 for O and to 6 for HW1HW2
+    ax2.set_xlim(2.3, 8)  
+    ax2.set_ylim(-0.4, 4) 
     ax2.tick_params(which="major", labelsize=14, width=1.5, length=6)
     ax2.tick_params(which="minor", labelsize=14, width=1.5, length=4)
-    #ax2.get_xaxis().set_visible(False)
-    #ax2.get_yaxis().set_visible(False)
 
     # Mark the region corresponding to the inset axes on ax1 and draw lines
     # in grey linking the two axes.
@@ -220,8 +207,6 @@ for col in range(len(df40.columns)):
     ax[1].plot(df40.index, df40.iloc[:,col], c=colors2[col])
     ax[1].tick_params(which="major", labelsize=17, width=1.5, length=6)
     ax[1].tick_params(which="minor", labelsize=17, width=1.5, length=4)
-    #ax[1].set_xticks([])
-    #ax[1].set_yticks([])
     ax[1].set_ylim(-0.4, 23)
     ax[1].set_xlim(2, 14)
     ax[1].set_xticks(range(2, 15, 1))
@@ -241,8 +226,6 @@ for col in range(len(df40.columns)):
     ax3.set_ylim(-0.4, 4)
     ax3.tick_params(which="major", labelsize=14, width=1.5, length=6)
     ax3.tick_params(which="minor", labelsize=14, width=1.5, length=4)
-    #ax3.get_xaxis().set_visible(False)
-    #ax3.get_yaxis().set_visible(False)
 
 
 #################################################################################
@@ -252,7 +235,6 @@ for col in range(len(df60.columns)):
     ax[2].tick_params(which="major", labelsize=17, width=1.5, length=6)
     ax[2].tick_params(which="minor", labelsize=17, width=1.5, length=4)
     ax[2].set_ylabel('$g_{OO}(r)$', fontsize=24)
-    #ax[2].set_xticks([])
     ax[2].set_ylim(-0.4, 23)
     ax[2].set_xlim(2, 14)
     ax[2].set_xticks(range(2, 15, 1))
@@ -270,8 +252,6 @@ for col in range(len(df60.columns)):
     ax4.set_ylim(-0.4, 4)
     ax4.tick_params(which="major", labelsize=14, width=1.5, length=6)
     ax4.tick_params(which="minor", labelsize=14, width=1.5, length=4)
-    #ax4.get_xaxis().set_visible(False)
-    #ax4.get_yaxis().set_visible(False)
 
     
 #################################################################################    
@@ -281,8 +261,6 @@ for col in range(len(df80.columns)):
     ax[3].plot(df80.index, df80.iloc[:,col], c=colors4[col])
     ax[3].tick_params(which="major", labelsize=17, width=1.5, length=6)
     ax[3].tick_params(which="minor", labelsize=17, width=1.5, length=4)
-    #ax[3].set_xticks([])
-    #ax[3].set_yticks([])
     ax[3].set_ylim(-0.4, 23)
     ax[3].set_xlim(2, 14)
     ax[3].set_xticks(range(2, 15, 1))
@@ -301,8 +279,6 @@ for col in range(len(df80.columns)):
     ax5.set_ylim(-0.4, 4)
     ax5.tick_params(which="major", labelsize=14, width=1.5, length=6)
     ax5.tick_params(which="minor", labelsize=14, width=1.5, length=4)
-    #ax5.get_xaxis().set_visible(False)
-    #ax5.get_yaxis().set_visible(False)
 
     
     
@@ -331,8 +307,6 @@ for col in range(len(df100.columns)):
     ax6.set_ylim(-0.4, 4)
     ax6.tick_params(which="major", labelsize=14, width=1.5, length=6)
     ax6.tick_params(which="minor", labelsize=14, width=1.5, length=4)
-    #ax6.get_xaxis().set_visible(False)
-    #ax6.get_yaxis().set_visible(False)
 
     
 ##################################################################################  
@@ -360,8 +334,6 @@ for col in range(len(df120.columns)):
     ax7.set_ylim(-0.4, 4)
     ax7.tick_params(which="major", labelsize=14, width=1.5, length=6)
     ax7.tick_params(which="minor", labelsize=14, width=1.5, length=4)
-    #ax7.get_xaxis().set_visible(False)
-    #ax6.get_yaxis().set_visible(False)
 
 
 ##################################################################################
@@ -385,13 +357,8 @@ cb.ax.tick_params(labelsize=17)
 
 
 mplplot.tight_layout()
-
-
 fig.text(1.095, 0.478, 'T$_{anneal}$ (K)', horizontalalignment='left', verticalalignment='bottom', rotation='vertical', color = 'black', size=28)
 
-
-#mplplot.show()
-
-#mplplot.savefig(f'C:/Users/jch13924/Documents/PhD/MD/Overall_Plots/Structure_1/Plots/{time}ns/updated/lowres_inset_RDF_{atom}_average.jpg', bbox_inches='tight', dpi=200)
+#mplplot.savefig(f'../inset_RDF_{atom}_average.jpg', bbox_inches='tight', dpi=200)
 
 
