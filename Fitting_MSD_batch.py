@@ -17,24 +17,13 @@ def plot_diff_coeff(file, run, system, ramp, Ttime):
 
     msd_file = open('D:/My_Work/XY_PBC_Runs/Structure_1/{2}/{1}/Heat_Ramps/{4}_ns/Analysis/Output_Files/MSD/msd_{2}_{0}_{4}ns.xvg'.format(file, run, system, ramp, Ttime), 'r')
 
-
-    #nlines = -1
-    #for line in msd_file:
-    #    if line != '':
-     #       nlines = nlines + 1
-
     msd_file.seek(0)
     
-    for iosef in range(21):           # to fit over the whole MSD file
+    for iosef in range(21):          
         osef = msd_file.readline()
-        
-    #if file == "heating_30K":
-        #nlines = 8144
-    #else:       
-    nlines = 12000
-        
-        
-    time = np.zeros(nlines)    # - 21 if over whole thing
+
+    nlines = 12000    
+    time = np.zeros(nlines)   
     msd = np.zeros(nlines)
     
     for iline in range(nlines):
@@ -50,7 +39,7 @@ def plot_diff_coeff(file, run, system, ramp, Ttime):
     plt.xlabel('∆T')
     plt.ylabel('MSD (cm$^2$)')
     plt.title('{0}'.format(file, run, system, ramp, Ttime))
-    #plt.savefig('D:/My_Work/XY_PBC_Runs/Structure_1/{2}/{1}/Heat_Ramps/{4}_ns/Analysis/Images/MSD/msd_{2}_{0}_{4}ns.png'.format(file, run, system, ramp, Ttime), bbox_inches='tight', dpi=800)
+    #plt.savefig('../msd_{2}_{0}_{4}ns.png'.format(file, run, system, ramp, Ttime), bbox_inches='tight', dpi=800)
     plt.show()
     plt.close()
 
@@ -84,7 +73,7 @@ for ramp in ramps:
 
                 diff_coeff_values = np.zeros(ntemp)
                 
-                output_file = open('D:/My_Work/XY_PBC_Runs/Structure_1/{1}/{0}/Heat_Ramps/{3}_ns/Analysis/Output_Files/MSD/lim_6000_diff_coeff_manual_{1}_{3}ns.txt'.format(run, system, ramp, Ttime), 'w')
+                output_file = open('../MSD/diff_coeff_manual_{1}_{3}ns.txt'.format(run, system, ramp, Ttime), 'w')
                 
                 file = 'relax_{0}K'.format(temp_system)
                 diff_coeff_values[0] = plot_diff_coeff(file, run, system, ramp, Ttime)
@@ -112,7 +101,7 @@ for ramp in ramps:
                 plt.yscale('log')
                 plt.tick_params(which="major", labelsize=12, width=2, length=6)
                 plt.tick_params(which="minor", labelsize=12, width=2, length=4)
-                #plt.savefig('D:/My_Work/XY_PBC_Runs/Structure_1/{2}/{1}/Heat_Ramps/{4}_ns/Analysis/Images/lim_6000_diff_coeff_{2}.png'.format(file, run, system, ramp, Ttime), bbox_inches='tight', dpi=1200)
+                #plt.savefig('../diff_coeff_{2}.png'.format(file, run, system, ramp, Ttime), bbox_inches='tight', dpi=1200)
                 plt.show()
                 plt.close()
 
