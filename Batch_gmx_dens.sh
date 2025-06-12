@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-Path="/mnt/d/My_Work/XY_PBC_Runs/Structure_1/"
+Path="../"
 
 TSur=$1;
 RUN=$2;
