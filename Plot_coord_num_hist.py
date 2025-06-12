@@ -9,7 +9,7 @@ import scipy.stats as sp
 import glob
 from matplotlib import cm
 
-files = glob.glob("D:/My_Work/XY_PBC_Runs/Structure_1/300Kwater_on_20Ksilic/RUN01/Heat_Ramps/100_ns/Analysis/Output_Files/CN/cutoff_changing_first_solv_shell_last500frames/*.cn33")
+files = glob.glob("../*.cn33")
 df = pd.concat(
     [
         pd.read_csv(
@@ -28,47 +28,17 @@ df = pd.concat(
 
 ######################
 
-
 df = df.drop("count", axis=1)
-
-
 df2 = df.drop([1, 6, 7])
-
-print(df2)
-
-
 df_1 = df.drop([1, 2, 3, 4, 5, 7])
-
-print(df_1)
-
-
 df_1 = df_1 * 10
-
-print(df_1)
-
-
-
 df_2 = df.drop([2, 3, 4, 5, 6])
-
-print(df_2)
-
-
 df_2 = df_2 * 100
-
-print(df_2)
-
-
-
 
 #######################
 
-
 # Split jet map 
 jet = mplplot.get_cmap('jet')
-
-
-#######
-
 barWidth = 0.04
 
 # Set position of bar on X axis 
@@ -223,7 +193,6 @@ plt.bar(br19_2, df_2['200'], width = barWidth, color= jet(np.linspace(0,1,19)[18
 
 plt.xlim(1,8)   
 
-
 ax.set_ylabel("Probability", fontsize=14)
 ax.set_xlabel("Coordination Number", fontsize=14)
 ax.tick_params(which="major", labelsize=14, width=2, length=6)
@@ -246,9 +215,7 @@ fig.text(0.74, 0.198, 'x 10', horizontalalignment='left', verticalalignment='bot
 fig.text(0.83, 0.198, 'x 100', horizontalalignment='left', verticalalignment='bottom', rotation='horizontal', color = 'black', size=14)
 fig.text(0.17, 0.198, 'x 100', horizontalalignment='left', verticalalignment='bottom', rotation='horizontal', color = 'black', size=14)
 
-
-
-mplplot.savefig('C:/Users/za954/Work Folders/Documents/Research/MD Paper/Plots/T_anneal/OO_coord_num_last500frames.jpg', bbox_inches='tight', dpi=600)
+mplplot.savefig('../OO_coord_num.jpg', bbox_inches='tight', dpi=600)
 
 
 
