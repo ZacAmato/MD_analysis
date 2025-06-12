@@ -1089,61 +1089,61 @@ for ramp in ramps:
 ####################PLOTTING RDF####################################################################################
 
 
-#ndens = 10
-#nbin = 500
+ndens = 10
+nbin = 500
 
-#def read_rdf(file, system, ramp, ndens, nbin, run, Ttime):
+def read_rdf(file, system, ramp, ndens, nbin, run, Ttime):
         
-#    rdf_file = open('../{1}/{3}/Heat_Ramps/{4}_ns/Analysis/RDF/fixed_rdf_{1}_{0}_{4}ns.txt'.format(file, system, ramp, run, Ttime), 'r')
-#    
-#    nrdf = 774
-#
-#    dist = np.zeros(nrdf)
-#    rdf = np.zeros(nrdf)
-
-#    for irdf in range(nrdf):
-
-#        line = rdf_file.readline()
-#        line_cut = line.split()
-#        dist[irdf] = float(line_cut[0])
-#        rdf[irdf] = float(line_cut[1])
-#
-#    return dist, rdf
-
-#for ramp in ramps:
+    rdf_file = open('../{1}/{3}/Heat_Ramps/{4}_ns/Analysis/RDF/fixed_rdf_{1}_{0}_{4}ns.txt'.format(file, system, ramp, run, Ttime), 'r')
     
-#    for run in runs:
+    nrdf = 774
+
+    dist = np.zeros(nrdf)
+    rdf = np.zeros(nrdf)
+
+    for irdf in range(nrdf):
+
+        line = rdf_file.readline()
+        line_cut = line.split()
+        dist[irdf] = float(line_cut[0])
+        rdf[irdf] = float(line_cut[1])
+
+    return dist, rdf
+
+for ramp in ramps:
+    
+    for run in runs:
         
-#        for Ttime in Ttimes:
+        for Ttime in Ttimes:
             
-#            for system in systems:
+            for system in systems:
                 
-#                system_cut = system.split('_')
-#                system_temp = system_cut[2].split('K')
-#                temp_system = int(system_temp[0])
-#                print(temp_system)
+                system_cut = system.split('_')
+                system_temp = system_cut[2].split('K')
+                temp_system = int(system_temp[0])
+                print(temp_system)
 
-#                for temp in range(temp_system + 20, 210, 10):
+                for temp in range(temp_system + 20, 210, 10):
 
-#                    print(ramp, system, temp)
-#                    file = 'heating_{0}K'.format(temp, ramp)
-#                    dist, rdf = read_rdf(file, system, ramp, ndens, nbin, run, Ttime)
+                    print(ramp, system, temp)
+                    file = 'heating_{0}K'.format(temp, ramp)
+                    dist, rdf = read_rdf(file, system, ramp, ndens, nbin, run, Ttime)
 
- #                   plt.plot(dist, rdf, c=cm.jet((temp-10)/200))
-  #          
-   #             file = 'relax_{0}K'.format(temp_system)
-    #            dist, rdf = read_rdf(file, system, ramp, ndens, nbin, run, Ttime)
-     #           plt.plot(dist, rdf, c=cm.jet((temp_system - 10) / 200))
+                    plt.plot(dist, rdf, c=cm.jet((temp-10)/200))
+            
+                file = 'relax_{0}K'.format(temp_system)
+                dist, rdf = read_rdf(file, system, ramp, ndens, nbin, run, Ttime)
+                plt.plot(dist, rdf, c=cm.jet((temp_system - 10) / 200))
 
-      #          plt.xlabel('O-O distance (nm)')
-       #         plt.ylabel('$g_{OO}(r)$')
-        #        #plt.xlim([0.2, 1.5])
-         #       #plt.ylim([0, 30])    #I added this
-          #      scalarmappaple = cm.ScalarMappable(cmap=cm.jet)
-           #     scalarmappaple.set_array(range(30, 210, 10))
-            #    plt.colorbar(scalarmappaple, label='Temperature (K)')
-             #   plt.savefig('../{0}/{3}/Heat_Ramps/{4}_ns/Analysis/Images/RDF_fixed_{0}_{4}ns.png'.format(system, ramp, file, run, Ttime), dpi=1200)
-              #  plt.close()
+                plt.xlabel('O-O distance (nm)')
+                plt.ylabel('$g_{OO}(r)$')
+                #plt.xlim([0.2, 1.5])
+                #plt.ylim([0, 30])    #I added this
+                scalarmappaple = cm.ScalarMappable(cmap=cm.jet)
+                scalarmappaple.set_array(range(30, 210, 10))
+                plt.colorbar(scalarmappaple, label='Temperature (K)')
+                plt.savefig('../{0}/{3}/Heat_Ramps/{4}_ns/Analysis/Images/RDF_fixed_{0}_{4}ns.png'.format(system, ramp, file, run, Ttime), dpi=1200)
+                plt.close()
 
 
 
